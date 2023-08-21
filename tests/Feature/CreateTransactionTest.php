@@ -79,4 +79,18 @@ class CreateTransactionTest extends TestCase
 
         $response->assertBadRequest();
     }
+
+    /** @test */
+    public function it_fails_with_transaction_receiver_cannot_be_equal_to_receiver_exception(): void
+    {
+        $sender = User::factory()->create(['balance' => 9.99, 'type' => UserTypeEnum::NORMAL]);
+        $receiver = $sender;
+
+        $response = $this->actingAs($sender)->post('/api/transactions', [
+            'receiver_id' => $receiver->id,
+            'value' => 9.99
+        ]);
+
+        $response->assertBadRequest();
+    }
 }
