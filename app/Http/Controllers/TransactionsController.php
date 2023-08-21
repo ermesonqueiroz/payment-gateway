@@ -14,6 +14,7 @@ class TransactionsController extends Controller
     ): TransactionResource
     {
         $data = $createTransactionRequest->validated();
+        $data['sender_id'] = $createTransactionRequest->user()->id;
         $transaction = $createTransactionService->run($data);
         return new TransactionResource($transaction);
     }

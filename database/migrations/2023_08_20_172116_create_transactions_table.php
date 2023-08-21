@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->float('value');
-            $table->integer('status');
+            $table->integer('status')->default(0);
             $table->foreignId('receiver_id');
             $table->foreignId('sender_id');
             $table->foreign('receiver_id')->on('users')->references('id');

@@ -9,7 +9,6 @@ class CreateTransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'sender_id' => ['required'],
             'receiver_id' => ['required'],
             'value' => ['required']
         ];
